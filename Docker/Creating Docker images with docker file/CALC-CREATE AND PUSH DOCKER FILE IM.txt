@@ -1,0 +1,77 @@
+CALC-CREATE AND PUSH DOCKER FILE IMAGE
+
+
+signin to docker desktop and hub
+
+CREATE A FOLDER->MAKE A CALCULATOR.JS FILE-->create Dockerfile file as filetype only
+
+//function to add two numbers
+function ass(a,b){
+	return a+b;
+}
+//function to subtract two numbers
+function subtract(a,b){
+	return a-b;
+}
+function multiply(a,b){
+	return a*b;
+}
+//function divide(a,b){
+	if(b==0){
+		return "cannot divide by zero!";
+	}
+	return a/b;
+}
+console.log("Addition(2+3):",add(2,3));
+console.log("Subtraction(5-2)",subtract(5,2));
+console.log("Multiplication(4*3):",multiply(4,3));
+console.log("Division(10/2):",divide(10,2));
+
+IN THE DOCKER FILE:
+
+FROM node:16-alpine
+WORKDIR /app
+COPY calculator.js /app
+CMD ["node", "calculator.js"]
+
+
+
+OPEN POWERSHELL:
+
+
+cd folderpath
+
+docker build -t simple-calculator
+
+docker run simple-calculator
+
+docker ps
+
+docker login
+
+docker tag simple-calculator nikitha2005/NEWIMAGENAME
+
+docker push
+
+docker ps -a
+
+docker rm container_id
+
+docker rmi nikitha2005/NEWIMAGENAME
+
+docker pull nikitha2005/NEWIMAGENAME
+
+docker run nikitha2005/NEWIMAGENAME
+
+docker ps -a
+
+docker rm container_id
+
+docker rmi nikitha2005/NEWIMAGENAME
+
+docker rmi simple-calculator
+
+docker logout
+
+
+

@@ -1,0 +1,65 @@
+RUNNING MULTIPLE CONTAINERS WITH DOCKER COMPOSE
+
+CREATE A FOLDER AND GIVE A NAME:
+
+dockercompose.yaml
+
+version:3
+""""
+version: '3.8'
+
+services:
+  tomcat:
+    image: tomcat:latest
+    container_name: tomcat_server
+    ports:
+      - "8087:8080" # Map host port 8087 to container port 8080
+    networks:
+      - my_network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "85:80" # Map host port 85 to container port 80
+    networks:
+      - my_network
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Optional: custom nginx config
+
+networks:
+  my_network:
+    driver: bridge
+
+"""
+"""
+---
+version: '3.8'
+services:
+ tomcat:
+  image: tomee
+  container_name: tomcat_server
+  ports:
+   - "8087:8080"
+ nginx:
+  image: nginx:latest
+  container_name: nginx_server
+  ports:
+   - "85:80"
+"""
+
+OPENPOWERSHELL
+
+cd FOLDERPATH
+
+docker-compose up -d
+
+open the chrome and search for localhost according to yaml file
+
+docker ps
+
+docker-compose stop
+
+docker ps
+
+docker-compose down

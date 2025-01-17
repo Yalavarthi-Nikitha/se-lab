@@ -1,0 +1,116 @@
+open command prompt as an administrator
+
+docker --version
+
+docker pull hello-world                         (hello-world is a pre-defined image in dockerhub)
+
+docker images                                       (list of images in local images)
+
+docker run hello-world      
+
+docker ps  -a                                           (list of all containers present and their details )
+
+docker rm container-id                            (take container_id copy from the above command) to remove the container
+
+docker rmi hello-world                             (remove the image)
+
+docker pull redis                                        (temporary-live data its a database)
+
+docker run --name NEWNAME -d redis   (running the container by giving the application a new name -d is for back end)
+
+docker ps                                                   (container currently running)
+
+docker exec -it NEWNAME redis-cli         (lets you interact with the redis database)
+entered interactive mode
+
+SET name "kaekav"
+
+GET name
+
+exit                                                             (to exit interactive mode)
+
+docker stop container_id                              (to stop the running container)
+
+docker rm container_id                                 (to remove the container)
+
+docker rmi redis                                            (to remove the redis image)
+
+
+
+
+
+
+DOCKER FILE BUILDING OWN IMAGE AND PUSHING IT TO DOCKER HUB
+ANYBODY CAN DOWNLOAD OUR IMAGE
+
+create a folder-->make a folder name of project-->create an empty file-->Dockerfile--->no extension filetype
+
+FROM redis:latest
+CMD ["redis-server"]
+ 
+
+save the file
+
+
+open powershell/command prompt
+
+
+copy path of the folder
+
+cd path
+
+ls
+
+docker build -t myredis .      (myredis--NEWNAME)
+
+docker images                      (to check creation of image)
+
+docker run --NEWNAME -d myredis   (myredis is the container newname is image)
+
+docker ps
+
+
+docker stop container_id
+
+docker commit container_id nikitha2005/NEWIMAGENAME
+
+you will get a hashcode
+
+go to docker desktop you can see the image you created
+
+docker images
+
+docker login
+ 
+docker push nikitha2005/NEWIMAGENAME  (everything is being pushed into remote repository)
+
+
+refresh docker hub
+
+docker rm container_id
+
+docker rmi nikitha2005/NEWIMAGENAME
+
+docker pull nikitha2005/NEWIMAGENAME
+
+
+docker run --name container_name -d nikitha2005/NEWIMAGENAME
+
+docker exec -it container_name redis-cli
+ entering into interface
+exit
+
+docker logout
+
+
+
+
+
+
+
+
+
+
+
+
+

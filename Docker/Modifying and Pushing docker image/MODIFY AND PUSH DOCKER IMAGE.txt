@@ -1,0 +1,58 @@
+MODIFY AND PUSH DOCKER IMAGE
+
+Open windowspowershell in admin mode
+
+
+docker pull ubuntu
+
+docker run --it --name container_name -d ubuntu
+
+YOU WILL GET A HASHCODE
+
+docker ps
+
+docker exec -it container_id bash  (interactive mode of ubuntu)
+
+git --version
+
+apt update      (updating ubuntu libraries)
+
+apt install git -y
+
+git --version
+
+exit
+
+docker stop container_id
+
+docker commit container_id nikitha2005/NEWIMAGENAME
+
+YOU WILL GET A HASHCODE
+
+CHECK FOR DOCKER IMAGES
+
+docker login     (TO PUSH THE IMAGE)
+
+docker push nikitha2005/NEWIMAGENAME
+
+docker rm container_id
+
+docker rmi nikitha2005/NEWIMAGENAME
+
+docker logout
+
+docker pull nikitha2005/NEWIMAGENAME
+
+docker run --name NEWIMAGENAME2 -it nikitha2005/NEWIMAGENAME
+INTERACTIVE LINE
+git --version
+exit
+
+docker rm container_id
+docker rmi nikitha2005/NEWIMAGENAME2
+
+
+
+
+
+
