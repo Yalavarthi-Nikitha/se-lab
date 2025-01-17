@@ -1,0 +1,29 @@
+CONFIGURING TOMCAT FOR ECLIPSE
+
+WINDOW-->SHOW VIEW-->OTHER-->SERVER-->APACHE-->NEXT-->TOMCAT 9
+
+BELOW SECTION DOUBLE CLICK ON "TOMCAT V9 SERVER AT LOCAL HOST"-->change the port number
+server location change it to second option
+
+
+to the left window you will find tomcat v9 under servers tomcat-user.xml file paste the below content in it in last but one line
+
+<role rolename="admin-gui,manager-gui,manager-
+script,manager-jmx,manager-status"/>
+<user username="admin"
+password="1234"roles="manager-gui,admin-gui
+,manager-script"/>
+
+
+<role rolename="admin-gui,manager-gui ,manager-script,manager-jmx,manager-status"/>
+  <user password="1234" roles="manager-gui, admin-gui ,manager-script" username="admin"/>
+
+
+right click on server and start
+
+go to localhost:portno
+
+click on manager app
+
+username-admin
+password--12345

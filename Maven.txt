@@ -1,0 +1,84 @@
+MAVEN BUILD LIFE CYCLE:
+
+mvn clean    (clears previous build files)
+mvn compile  (compiles the source code into byte code)
+mvn test     (runs test on the code)
+mvn package  (bundles everything into a single deployable file JAR OR WAR)
+mvn install  (adds necessary packages)
+DEPLOY
+
+
+target folder contains the complete output of application to be deployed(JAR/WAR POM.xml)
+
+
+mvn -version
+
+CREATING MAVEN JAVA PROJECT USING ECLIPSE AND PUSH INTO GITHUB
+
+
+
+FILE->NEW->OTHER->MAVEN PROJECT->NEXT->org.apache.maven->quickstart(1.4)->groupid(com.app.demo)->artifactid(project title)->finish
+
+
+PackageExplorer->Project
+->src/main.java->App.java(program)
+->pom.xml
+
+RightClick on Project->
+Run AS->Maven Clean(deletes target folder previous builds)
+RUN AS->Maven install(compile code)
+RUN AS->Maven Test
+RUN AS->Maven Build->Goals->clean install test
+
+
+Open target folder->.JAR FILE CREATED->RightClick on Project->RUN AS Java Application->OK
+
+CONSOLE WILL SHOW OUTPUT
+
+OPEN GITHUB->NEW REPOSITORY->add.gitignore->maven
+
+code->copy url->Open GitBash->git clone "url"->open the folder in eclipse workspace copy all contents
+
+paste the contents in users folder named as the repository
+
+git add.
+git commit -m"Sample Maven Java"
+git push
+
+
+CREATING MAVEN WEB PROJECT USING ECLIPSE AND PUSH INTO GITHUB
+
+File->new->other-maven project->next->org.apache.maven->archetype-webapp(1.4)->groupid(com.app.demo)->artifactid(project name)->finish
+
+google->servlet api maven dependancy->click on 2.5->copy dependancy->paste it in pom.xml before ending of dependencies
+
+ <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+   <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>2.5</version>
+	</dependency>
+
+  </dependencies>
+
+
+maven clean
+maven install
+maven test
+maven build
+
+right click on project->show in local terminal->git bash 
+
+git init
+git ls
+git add . 
+git commit -m""
+git remote add origin "url"
+git push -u origin master
+under master you have files(dropdown on main)
