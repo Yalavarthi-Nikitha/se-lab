@@ -1,0 +1,111 @@
+1) Maven Java Project Steps :
+ -> New - MavenProject - org.apache.maven(select quickstart 1.4v) - artifactid(org id) & groupid(project name).
+ -> Run as : clean, install, test, build.
+ -> Goals : clean, install, test.
+
+2) Maven Web Project Steps :
+ -> New - MavenProject - org.apache.maven(select webapp 1.4v) - artifactid(org id) & groupid(project name).
+ -> Add dependency(pom.xml) : search servlet api maven dependency(to talk to server).
+ -> Run as : clean, install, test, build
+ -> Goals : clean, install, test.
+ -> Run as : Run on server - select tomcat 9 - finish.
+
+3) Build CI/CD Pipeline using Jenkins for Maven Java Project :
+=> For Build Project :
+ 	-> new - name - freestyleProject.
+ 	-> Configuration :
+		-> git link, branch main
+		-> build steps - invoke top-level Maven targets - MAVEN_HOME - Goals - clean.
+		-> build steps - invoke top-level Maven targets - MAVEN_HOME - Goals - install.
+		-> post-build actions - archive the artifacts - files (**/*).
+		-> post-build actions - build other projects - project_name.
+
+=> For Test Project :
+ 	-> new - name - freestyleProject.
+ 	-> Configuration :
+		-> build environment - delete workspace before build.
+		-> build steps - copy artifacts from other project - build_project_name - stable build only - **/*.
+		-> build steps - invoke top-level Maven targets - MAVEN_HOME - Goals - test.
+=> To Build Pipeline :
+	-> +(top) - pipeline_name - type(build pipeline view) - layout - select initial project(build project).
+
+
+4) Build CI/CD Pipeline using Jenkins for Maven Web Project :
+=> For Build Project :
+ 	-> new - name - freestyleProject.
+ 	-> Configuration :
+		-> git link, branch main
+		-> build steps - invoke top-level Maven targets - MAVEN_HOME - Goals - clean.
+		-> build steps - invoke top-level Maven targets - MAVEN_HOME - Goals - install.
+		-> post-build actions - archive the artifacts - files (**/*).
+		-> post-build actions - build other projects - project_name.
+
+=> For Test Project :
+ 	-> new - name - freestyleProject.
+ 	-> Configuration :
+		-> build environment - delete workspace before build.
+		-> build steps - copy artifacts from other project - build_project_name - stable build only - **/*.
+		-> build steps - invoke top-level Maven targets - MAVEN_HOME - Goals - test.
+		-> post-build actions - archive the artifacts - files (**/*).
+		-> post-build actions - build other projects - project_name.
+
+=> For Deploy Project :
+	-> new - name - freestyleProject.
+ 	-> Configuration :
+		-> build environment - delete workspace before build.
+		-> build steps - copy artifacts from other project - build_project_name - stable build only - **/*.
+		-> post-build actions - Deploy war/ear to container - **/*(war/ear files) - context path - container - tomcat v9 - add credentials - tomcat url.
+
+=> To Build Pipeline :
+	-> +(top) - pipeline_name - type(build pipeline view) - layout - select initial project(build project).
+
+
+4) Docker Commands :
+  -> docker --version.
+  -> docker pull image-name.
+  -> docker run --name newname -d redis.
+  -> docker stop cont-id.
+  -> docker images.
+  -> docker ps. (active containers)
+  -> docker ps -a. (all containers)
+  -> docker rm cont-id.
+  -> docker rmi img-id.
+  -> docker exec -it cont-name intcv-mode(redis-cli, bash).
+  -> docker build -t name .(cur fold).
+  -> docker commit cont-id dockerid/imgname.
+  -> docker push dockerid/imgname.
+  -> docker tag imgname tagname.
+  -> docker compose up -d.
+  -> docker compose down.
+  -> docker compose start.
+  -> docker compose stop.
+
+   Minikube Commands:
+  -> minikube start.
+  -> kubectl create deployment name --image=name(nginx).
+  -> kubectl get deployments.
+  -> kubectl expose deployment name --type=NodePort --port=80 --target-port=80.
+  -> kubectl scale deployment name --replicas=4.
+  -> kubectl get pods.
+  -> kubectl port-forward svc/name 8081:80.
+  -> minikube dashboard.
+  -> kubectl delete deployment name.
+  -> kubectl delete servic name.
+  -> minikube stop.
+
+   Nagios Commands:
+  -> docker pull jasonrivers/nagios:latest.
+  -> docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest.
+  -> username : nagiosadmin, password : nagios.
+
+  => For Redis App :
+	-> FROM redis:latest
+ 	-> CMD ["redis-server"]
+
+  => For Calculator App :
+	-> FROM node:16-alpine
+	-> WORKDIR /app
+	-> COPY calculator.js /app
+	-> CMD ["node", "calculator.js"]
+
+  ** names should be Dockerfile, docker-compose.yaml.
