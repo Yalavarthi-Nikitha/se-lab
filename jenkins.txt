@@ -1,0 +1,106 @@
+BUILDING THE CI/CD FREESTYLE PIPELINE USING JENKINS FOR MAVEN JAVA PROJECTS
+
+
+Dashboard->New item->free style project->give a name->OK
+
+Dashboard of free style project->sourcecodemanagement-->git(link of maven prohect link)-->Branch specifier-->change to main-->Build steps->iNVOKE TOP LEVEL MAVEN TARGETS-->maven version-->MAVEN_HOME-->goals-->clean-->AGain invoke a step-->goals:install-->
+Post build actions-->archive the artifacts-->**/*-->add build other projects-->SampleMavenProject_test-->trigger only if build is stable
+
+
+
+Now create 
+SampleMavenProject_test-->Build environment-->delete workspace before build starts-->add build steps-->copy artifact from another project-->give the project name as SampleMavenProject_build-->stable build only-->artifcats to copy?**/*-->add build step-->invoke top level maven targets-->MAVEN_HOME-->Goals:test-->add post build action--archive artifacts-->**/*
+
+APPLY SAVE
+
++ symbol-->give a name to pipeline-->build pipeline view-->choose project build-->standard build card-->RUN-->BUILD--TEST
+
+
+
+
+
+BUILDING THE CI/CD FREESTYLE PIPELINE USING JENKINS FOR MAVEN WEB PROJECT WITH POLL SCM
+
+
+new item in jenkins-->Samplemavenwebproject__build-->freestyle project-->Source code management-->git-->git hub url for maven web-->branch specifier-->*/master or */main
+
+github-->go to the webproj repository-->settings-->webhooks-->Add webhook-->under payload url give Jenkins path(not required)
+
+
+Build triggers-->poll SCM-->****
+
+
+BUILD STEPS-->add build step-->invoke top-level maven targets--->MAVEN_HOME-->goals--clean
+invoke top-level maven targets--->MAVEN_HOME-->goals--install
+
+POST BUILD ACTIONS-->archive the artifacts-->**/*
+
+BUILD OTHER PROJECTS--->Samplemavenwebproj_test-->trigger only if build is stable-->APPLY AND SAVE
+
+
+GO BACK TO DASHBOARD-->NEW ITEM-->Samplemavenwebproj_test-->freestyle-->Build environments-->delete workspace before build starts-->
+BUILD STEPS-->copy artifacts from another project--->samplemavenwebproject__build
+-->stable build only-->artifacts to copy-->**/*
+
+invoke top-level maven targets--->MAVEN_HOME-->goals--test
+
+POST BUILD ACTIONS--->archive the artifacts-->**/*
+
+BUILD OTHER PROJECTS-->SampleMavenWebProject_Deploy
+
+APPLY AND SAVE
+
+
+GO BACK TO DASHBOARD-->new item-->SampleMavenWebProject_Deploy-->freestyle-->Build environments-->delete workspace before build starts-->BUILD STEPS-->copy artifacts from another project--->samplemavenwebproject__test
+-->stable build only-->artifacts to copy-->**/*
+POST BUILD ACTIONS-->DEPLOY WAR/EAR TO A CONTAINER-->war/ear files-->**/*war-->context path-->Samplewebprojectmaven-->add container-->tomcat 9-->credential-->add-->(make sure tomcat 9 server is started)-->username--admin-->pwd--12345-->add--->TOMCAT URl-->http://localhost:8083/-->apply save
+
+
+
+GO BACK TO DASHBOARD AND CLICK ON + SYMBOL BELOW "add desc" TO ADD NEW VIEW-->samplewebproject_pipeline-->upstream/downstream config-->SampleMavenWebproject_build-->Apply OK-->run pipeline-->go to tomcat open the name given in tomcat and click on it
+
+
+
+
+
+BUILDING THE CI/CD SCRIPTED PIPELINE USING JENKINS FOR MAVEN JAVA PROJECT WITH POLL SCM
+
+
+NEW ITEM-->Declarativepipeline_mavenjava-->pipeline-->ok-->scroll down-->pipeline script-->copy and paste the script-->apply ok-->dashboard-->Declarativepipeline_mavenjava-->build now--> after bulding without errors-->CONFIGURE(left panel)-->general-->build triggers-->build periodically-->*****-->apply and save
+
+ pipeline {
+    agent any
+    tools{
+        maven 'MAVEN_HOME'
+    }
+    stages {
+        stage('git repo & clean') {
+            steps {
+                bat "rmdir  /s /q SampleMavenJavaProject"
+                bat "git clone https://github.com/budarajumadhurika/SampleMavenJavaProject.git"
+                bat "mvn clean -f SampleMavenJavaProject"
+            }
+        }
+        stage('install') {
+            steps {
+                bat "mvn install -f SampleMavenJavaProject"
+            }
+        }
+        stage('test') {
+            steps {
+                bat "mvn test -f SampleMavenJavaProject"
+            }
+        }
+        stage('package') {
+            steps {
+                bat "mvn package -f SampleMavenJavaProject"
+            }
+        }
+    }
+}
+
+
+
+
+
+
