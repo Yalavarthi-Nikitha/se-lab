@@ -1,0 +1,19 @@
+NAGIOS WITH DOCKER
+
+
+docker pull jasonrivers/nagios:latest
+
+docker run --name CONTAINERNAME -p 8888:80 jasonrivers/nagios:latest
+
+LOCALHOST 8888
+
+nagiosadmin-username
+nagios--pwd
+
+docker ps
+
+docker stop container_name
+
+docker rm container_name
+
+docker rmi jasonrivers/nagios
