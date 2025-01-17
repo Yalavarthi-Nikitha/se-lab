@@ -1,0 +1,50 @@
+AWS CLOUD MAVEN WEB PROJECT USING DOCKER
+
+
+START LAB CLICK ON GREEN AWS
+
+EC2-->LAUNCH INSTANCE-->GIVE A NAME-->UBUNTU-->FREE-->T2.MICRO-->KEY PAIR-->SAVE FILE-->CHECKBOXES ALL-->LAUNCH INSTANCE-->RUNNING-CHECKED-->SELECT AND CONNECT-->COPY PATH OF KEY--?
+
+COMMAND PROMT
+CD PATH OF KEY FILE
+
+COPY COMMAND FROM AWS AND PASTE IN CLI
+
+SUDO APT UPDATE
+
+sudo apt-get install docker.io
+
+sudo apt install.git
+
+sudo apt install nano
+
+OPEN MAVEN WEBPROJECT in github
+
+git clone "Webproject url"
+
+cd SampleMavenWebProject
+
+nano Dockerfile
+
+FROM tomcat:9-jdk-21
+COPY target/*/war/usr/local/tomacat/webapps/
+
+sudo docker build -t NAME .
+
+sudo docker run -d 9090:8080 NAME
+
+get ip4 address in instance aws cloud
+
+http:paste in browser:9090\NAME
+instances
+security grouos
+add inbound rules
+custom tcp 9090
+
+
+
+
+sudo docker stop container id
+exit
+
+AWS--select and terminate/delete

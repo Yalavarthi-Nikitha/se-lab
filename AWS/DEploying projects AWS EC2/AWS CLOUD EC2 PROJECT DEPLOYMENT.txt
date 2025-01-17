@@ -1,0 +1,91 @@
+AWS CLOUD EC2 PROJECT DEPLOYMENT
+
+start lab
+
+click on aws green colour--you will be redirected to the aws management console
+
+click on EC2 or search for it--elastic compute cloud--virtual services
+
+
+EC2 DASHBOARD
+
+launch instance-->Name an tags(give a name)-->Amazon Machine Image-quickstart(Ubuntu)-->AMI(ubuntu server 24.04 LTS HVM SSD)-->instance type(t2.micro)-->keypair login-->create key pair(give key pairname,RSA,.pem)-->click on the check boxes in network settings for new security group--->configure storage--->LAUNCH INSTANCE
+
+
+Open INstances on the top-->instance state-running-->select it-->connect-->SSH CLIENT--> open the saved key folder-->copy the path and open it in command prompt-->copy command from ssh client(above note in SSH CLIENT IN "connect to instance")-->paste in command prompt-->yes--> sudo apt update
+
+sudo apt-get docker.io
+
+sudo apt install git
+
+sudo apt install nano
+
+create folder and make a html folder with basic tags
+<html>
+<head><title>MY webpage</title></head>
+<body><h1>Hello from AWS!</h1></body>
+</html>
+
+-->OPEN GITBASH HERE
+
+git init
+
+git add.
+
+git commit -m"committed"
+
+
+create a new repo named aws in github
+
+git branch -M main
+
+git remote origin "url" (FROM GITHUB)
+
+git push -u origin main
+
+HTML FILE UPDATED
+
+url of this repository copy it
+
+BACK TO COMMAND PROMPT
+
+git clone "url of html repository"
+
+cd AwsExample
+
+ls
+
+nano Dockerfile
+"
+FROM ngnix:alpine
+COPy . /usr/share/nginx/html
+"
+
+CTL+O CTRL+X
+
+
+sudo docker build -t NAME .
+
+sudo docker run -d 80:80 NAME
+
+OPEN INSTANCE IN AWS NOW and see the address arrows
+
+copy public ipv4 address
+
+PASTE THE ADDRESS AND RUN IN THE BROWSER
+
+
+sudo docker stop container_id
+
+terminate the instance in aws cloud by changing its state there
+
+END LAB 
+
+
+
+
+
+
+
+
+
